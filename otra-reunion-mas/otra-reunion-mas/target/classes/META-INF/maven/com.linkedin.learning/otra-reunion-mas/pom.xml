@@ -32,7 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
-			<artifactId>hibernate-core</artifactId>
+			<artifactId>hibernate-agroal</artifactId>
 			<version>7.0.8.Final</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
