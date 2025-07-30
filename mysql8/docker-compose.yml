@@ -22,9 +22,19 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: db_java_orm
+      TZ: Europe/Madrid # la zona horaria
     ports:
       - 3306:3306
     container_name: mysql8
+# --- Configuración del volumen para la persistencia de datos de MySQL ---
+    volumes:
+      - mysql_db_data:/var/lib/mysql # Mapea el volumen 'mysql_db_data' al directorio de datos de MySQL
+    # ----------------------------------------------------------------------
+
+# --- Definición de los volúmenes con nombre ---
+volumes:
+  mysql_db_data: # Define el volumen con nombre para los datos de MySQL. Docker lo gestionará.
+    # driver: local # Opcional, pero explicita que es un volumen local
 
 #  adminer:
 #    image: adminer

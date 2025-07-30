@@ -30,11 +30,15 @@
 	</dependencyManagement>
 
 	<dependencies>
+		
 		<dependency>
-			<groupId>org.hibernate.orm</groupId>
+			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-agroal</artifactId>
-			<version>7.0.8.Final</version>
+			<version>5.4.12.Final</version>
+			<type>pom</type>
 		</dependency>
+		
+		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
