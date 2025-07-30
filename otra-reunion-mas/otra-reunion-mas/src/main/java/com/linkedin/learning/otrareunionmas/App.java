@@ -1,9 +1,9 @@
 package com.linkedin.learning.otrareunionmas;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.NoResultException;
 
 import com.linkedin.learning.otrareunionmas.dao.ReunionDao;
 import com.linkedin.learning.otrareunionmas.dominio.Reunion;
@@ -29,6 +29,16 @@ public class App {
 		// "Reunion de pasado mañana");
 		Reunion r2 = new Reunion(LocalDateTime.now().plusDays(2), "Reunion de pasado mañana");
 		rdao.save(r2);
-		System.out.println("Tu proxima reunion es " + rdao.proximaReunion());
+		try {
+			System.out.println("Tu proxima reunion es " + rdao.proximaReunion());
+		} catch (NoResultException e) {
+			System.out.println("No tienes ninguna reunion a la vista.");
+		}
+
+		Reunion r3 = new Reunion(LocalDateTime.now().plusDays(1), "Reunion de mañana");
+		rdao.save(r3);
+		List<Reunion> reunionesManhana = rdao.reunionesManhana();
+		System.out.println("Para mañana:" + reunionesManhana);
+
 	}
 }

@@ -1,13 +1,13 @@
 package com.linkedin.learning.otrareunionmas.dominio;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 //import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +28,9 @@ public class Reunion {
 
 	// @Column(name = "asunto")
 	private String asunto;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Sala sala;
 
 	/**
 	 * @return the id
@@ -71,6 +74,22 @@ public class Reunion {
 		this.asunto = asunto;
 	}
 
+	
+	
+	/**
+	 * @return the sala
+	 */
+	public Sala getSala() {
+		return sala;
+	}
+
+	/**
+	 * @param sala the sala to set
+	 */
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
 	public Reunion() {
 	}
 
@@ -78,7 +97,6 @@ public class Reunion {
 		this.fecha = fecha;
 		this.asunto = asunto;
 	}
-
 
 	@Override
 	public String toString() {
