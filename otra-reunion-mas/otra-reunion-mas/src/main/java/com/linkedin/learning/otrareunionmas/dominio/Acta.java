@@ -67,9 +67,9 @@ public class Acta {
 	public Acta() {
 	}
 
-	public Acta(int id, String contenido) {
-		this.id = id;
+	public Acta(String contenido, Reunion reunion) {
 		this.contenido = contenido;
+		this.reunion = reunion;
 	}
 
 	@Override

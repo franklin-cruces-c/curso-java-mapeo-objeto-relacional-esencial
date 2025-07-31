@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import com.linkedin.learning.otrareunionmas.dao.ActaDao;
 import com.linkedin.learning.otrareunionmas.dao.ReunionDao;
 import com.linkedin.learning.otrareunionmas.dao.SalaDao;
+import com.linkedin.learning.otrareunionmas.dominio.Acta;
 import com.linkedin.learning.otrareunionmas.dominio.Reunion;
 import com.linkedin.learning.otrareunionmas.dominio.Sala;
 
@@ -24,6 +26,13 @@ public class App {
 		System.out.println(r);
 		rdao.save(r);
 		System.out.println(r);
+		
+		ActaDao actaDao= new ActaDao();
+		Acta a = new Acta("Reunion anulada",r);
+		actaDao.save(a);
+		r.setActa(a);
+		rdao.update(r);
+		
 		lr = rdao.getAll();
 		System.out.println(lr);
 
@@ -63,6 +72,6 @@ public class App {
 		System.out.println("Paso 4:"+salaDao.getAll());
 		
 		*/
-
+       
 	}
 }
