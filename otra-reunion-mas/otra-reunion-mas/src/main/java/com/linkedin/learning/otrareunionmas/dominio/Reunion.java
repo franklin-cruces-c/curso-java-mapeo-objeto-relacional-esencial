@@ -1,12 +1,16 @@
 package com.linkedin.learning.otrareunionmas.dominio;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,6 +39,17 @@ public class Reunion {
 
 	@OneToOne(mappedBy = "reunion")
 	private Acta acta;
+
+	@ManyToMany(mappedBy = "reuniones", cascade = CascadeType.ALL)
+	private Set<Persona> participantes;
+
+	public Reunion() {
+	}
+
+	public Reunion(LocalDateTime fecha, String asunto) {
+		this.fecha = fecha;
+		this.asunto = asunto;
+	}
 
 	/**
 	 * @return the id
@@ -106,19 +121,26 @@ public class Reunion {
 		this.acta = acta;
 	}
 
-	public Reunion() {
+	/**
+	 * @return the participantes
+	 */
+	public Set<Persona> getParticipantes() {
+		return participantes;
 	}
 
-	public Reunion(LocalDateTime fecha, String asunto) {
-		this.fecha = fecha;
-		this.asunto = asunto;
+	/**
+	 * @param participantes the participantes to set
+	 */
+	public void setParticipantes(Set<Persona> participantes) {
+		this.participantes = participantes;
 	}
 
 	@Override
 	public String toString() {
 		return "Reunion {id=" + id + ", " + (fecha != null ? "fecha=" + fecha + ", " : "")
 				+ (asunto != null ? "asunto=" + asunto + ", " : "") + (sala != null ? "sala=" + sala + ", " : "")
-				+ (acta != null ? "acta=" + acta : "") + "}";
+				// + (acta != null ? "acta=" + acta : "")
+				+ "}";
 	}
 
 }

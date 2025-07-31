@@ -70,6 +70,7 @@ public class Acta {
 	public Acta(String contenido, Reunion reunion) {
 		this.contenido = contenido;
 		this.reunion = reunion;
+		reunion.setActa(this);
 	}
 
 	@Override
