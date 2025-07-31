@@ -43,7 +43,7 @@ public class App {
 		System.out.println("Para mañana:" + reunionesManhana);
 		
 		SalaDao salaDao = new SalaDao();
-		
+		/*
 		Sala s = new Sala("S205","Sala grande",25);
 		salaDao.save(s);
 		System.out.println("Paso 1:"+salaDao.getAll());
@@ -62,7 +62,7 @@ public class App {
 		
 		System.out.println("Paso 4:"+salaDao.getAll());
 		
-		
+		*/
 
 	}
 }

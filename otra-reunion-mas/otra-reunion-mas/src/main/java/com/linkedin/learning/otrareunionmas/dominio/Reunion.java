@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +32,9 @@ public class Reunion {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Sala sala;
+
+	@OneToOne(mappedBy = "reunion")
+	private Acta acta;
 
 	/**
 	 * @return the id
@@ -74,8 +78,6 @@ public class Reunion {
 		this.asunto = asunto;
 	}
 
-	
-	
 	/**
 	 * @return the sala
 	 */
@@ -90,6 +92,20 @@ public class Reunion {
 		this.sala = sala;
 	}
 
+	/**
+	 * @return the acta
+	 */
+	public Acta getActa() {
+		return acta;
+	}
+
+	/**
+	 * @param acta the acta to set
+	 */
+	public void setActa(Acta acta) {
+		this.acta = acta;
+	}
+
 	public Reunion() {
 	}
 
@@ -101,7 +117,8 @@ public class Reunion {
 	@Override
 	public String toString() {
 		return "Reunion {id=" + id + ", " + (fecha != null ? "fecha=" + fecha + ", " : "")
-				+ (asunto != null ? "asunto=" + asunto : "") + "}\n";
+				+ (asunto != null ? "asunto=" + asunto + ", " : "") + (sala != null ? "sala=" + sala + ", " : "")
+				+ (acta != null ? "acta=" + acta : "") + "}";
 	}
 
 }
