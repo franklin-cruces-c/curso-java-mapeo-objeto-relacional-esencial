@@ -28,25 +28,28 @@ public class App {
 		Persona marta = new Persona("E001", "Marta", "García López");
 		Persona pedro = new Persona("E002", "Pedro", "Gómez Fernández");
 
-		Set<Persona> equipo = new HashSet<Persona>();
-		equipo.add(marta);
-		equipo.add(pedro);
+//		Set<Persona> equipo = new HashSet<Persona>();
+//		equipo.add(marta);
+//		equipo.add(pedro);
 
 		Reunion r = new Reunion(LocalDateTime.now(), "Reunion con Personas");
 		Reunion r1 = new Reunion(LocalDateTime.now(), "Otra reunion con Personas");
+		r1.addParticipante(pedro);
 		rdao.save(r1);
 
-		Set<Reunion> reunionesMarta = new HashSet<Reunion>();
-		reunionesMarta.add(r);
-
-		marta.setReuniones(reunionesMarta);
-
-		Set<Reunion> reunionesPedro = new HashSet<Reunion>();
-		reunionesPedro.add(r);
-		reunionesPedro.add(r1);
-		pedro.setReuniones(reunionesPedro);
+//		Set<Reunion> reunionesMarta = new HashSet<Reunion>();
+//		reunionesMarta.add(r);
+//
+//		marta.setReuniones(reunionesMarta);
+//
+//		Set<Reunion> reunionesPedro = new HashSet<Reunion>();
+//		reunionesPedro.add(r);
+//		reunionesPedro.add(r1);
+//		pedro.setReuniones(reunionesPedro);
 		System.out.println(r);
-		r.setParticipantes(equipo);
+//		r.setParticipantes(equipo);
+		r.addParticipante(marta);
+		r.addParticipante(pedro);
 		rdao.save(r);
 		System.out.println(r);
 

@@ -1,6 +1,7 @@
 package com.linkedin.learning.otrareunionmas.dominio;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -131,8 +132,17 @@ public class Reunion {
 	/**
 	 * @param participantes the participantes to set
 	 */
-	public void setParticipantes(Set<Persona> participantes) {
-		this.participantes = participantes;
+//	public void setParticipantes(Set<Persona> participantes) {
+//		this.participantes = participantes;
+//	}
+	public void addParticipante(Persona participante) {
+		if (participantes == null) {
+			participantes = new HashSet<Persona>();
+		}
+		participantes.add(participante);
+		if (!participante.getReuniones().contains(this)) {
+			participante.addReunion(this);
+		}
 	}
 
 	@Override

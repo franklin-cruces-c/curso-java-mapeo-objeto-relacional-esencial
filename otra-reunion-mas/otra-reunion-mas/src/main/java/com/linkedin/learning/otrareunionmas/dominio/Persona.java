@@ -1,5 +1,6 @@
 package com.linkedin.learning.otrareunionmas.dominio;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -23,15 +24,16 @@ public class Persona {
 
 	private String nombre;
 	private String apellidos;
-	
+
 	@ManyToMany
 	private Set<Reunion> reuniones;
 
 	public Persona() {
-
+		this.reuniones = new HashSet<Reunion>();
 	}
 
 	public Persona(String numeroEmpleado, String nombre, String apellidos) {
+		this();
 		this.numeroEmpleado = numeroEmpleado;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -103,8 +105,14 @@ public class Persona {
 	/**
 	 * @param reuniones the reuniones to set
 	 */
-	public void setReuniones(Set<Reunion> reuniones) {
-		this.reuniones = reuniones;
+//	public void setReuniones(Set<Reunion> reuniones) {
+//		this.reuniones = reuniones;
+//	}
+	public void addReunion(Reunion reunion) {
+		reuniones.add(reunion);
+		if (!reunion.getParticipantes().contains(this)) {
+			reunion.addParticipante(this);
+		}
 	}
 
 	@Override
