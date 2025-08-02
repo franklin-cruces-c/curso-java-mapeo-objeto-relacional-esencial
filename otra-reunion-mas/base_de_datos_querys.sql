@@ -29,3 +29,18 @@ select
         pr.participantes_id=1
         
         
+SELECT a.*, r.fecha 
+FROM acta a
+INNER JOIN reunion r ON a.reunion_id = r.id
+WHERE r.fecha < now() -1;
+
+--Las reuniones de un empleado
+SELECT r.*,p.nombre 
+FROM reunion r
+INNER JOIN persona_reunion pr ON pr.reuniones_id = r.id 
+INNER JOIN persona p ON  p.id = pr.participantes_id  
+WHERE p.numeroEmpleado ='E002';
+
+        
+        
+        
