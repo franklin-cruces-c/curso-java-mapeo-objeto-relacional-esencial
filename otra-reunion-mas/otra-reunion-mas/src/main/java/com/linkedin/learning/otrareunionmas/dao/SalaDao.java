@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.linkedin.learning.otrareunionmas.dominio.Sala;
@@ -29,6 +30,20 @@ public class SalaDao extends AbstractDao<Sala> {
 
 		Root<Sala> root = criteriaQuery.from(Sala.class);
 		criteriaQuery.select(root).where(cb.ge(root.get("capacidad"), n));
+		TypedQuery<Sala> query = (TypedQuery<Sala>) getEm().createQuery(criteriaQuery);
+		return query.getResultList();
+	}
+
+	public List<Sala> findSalasAdecuadasParaN(int n) {
+		CriteriaBuilder cb = getEm().getCriteriaBuilder();
+		CriteriaQuery<Sala> criteriaQuery = cb.createQuery(Sala.class);
+		Root<Sala> root = criteriaQuery.from(Sala.class);
+
+		Predicate capacidadMinima = cb.ge(root.get("capacidad"), n);
+		Predicate capacidadMaxima = cb.lessThanOrEqualTo(root.get("capacidad"), n);
+		Predicate rangoCapacidad = cb.and(capacidadMinima, capacidadMaxima);
+
+		criteriaQuery.select(root).where(rangoCapacidad);
 		TypedQuery<Sala> query = (TypedQuery<Sala>) getEm().createQuery(criteriaQuery);
 		return query.getResultList();
 	}

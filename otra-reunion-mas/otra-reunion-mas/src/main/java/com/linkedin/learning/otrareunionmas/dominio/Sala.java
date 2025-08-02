@@ -90,7 +90,7 @@ public class Sala {
 
 	@Override
 	public String toString() {
-		return "Sala {" + (id != null ? "id=" + id + ", " : "")
+		return "\nSala {" + (id != null ? "id=" + id + ", " : "")
 				+ (descripcion != null ? "descripcion=" + descripcion + ", " : "") + "capacidad=" + capacidad + "}";
 	}
 
