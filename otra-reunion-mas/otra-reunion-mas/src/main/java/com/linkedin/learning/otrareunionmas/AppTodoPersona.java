@@ -18,11 +18,11 @@ public class AppTodoPersona {
 
 		if (optPersona.isPresent()) {
 			Persona p = optPersona.get();
-			System.out.println("Persona:" + p);
+//			System.out.println("Persona:" + p);
 
 			// reuniones de la persona
 			Set<Reunion> reuniones = p.getReuniones();
-			System.out.println("Reuniones:" + reuniones);
+//			System.out.println("Reuniones:" + reuniones);
 
 			Set<Sala> salas = new HashSet<Sala>();
 			Set<Persona> participantes = new HashSet<Persona>();
@@ -33,9 +33,9 @@ public class AppTodoPersona {
 				participantes.addAll(reunion.getParticipantes());
 				actas.add(reunion.getActa());
 			}
-			System.out.println("Salas:" + salas);
-			System.out.println("Participantes:" + participantes);
-			System.out.println("Actas:" + actas);
+//			System.out.println("Salas:" + salas);
+//			System.out.println("Participantes:" + participantes);
+//			System.out.println("Actas:" + actas);
 		}
 	}
 
