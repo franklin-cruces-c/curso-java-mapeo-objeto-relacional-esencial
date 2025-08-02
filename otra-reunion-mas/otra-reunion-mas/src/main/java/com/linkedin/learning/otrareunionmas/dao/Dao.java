@@ -10,7 +10,7 @@ import java.util.Optional;
  * 
  */
 public interface Dao<T> {
-	Optional<T> get(long id);
+	Optional<T> get(int id);
 
 	List<T> getAll();
 
